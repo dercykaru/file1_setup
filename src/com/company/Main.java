@@ -11,49 +11,36 @@ public class Main {
         //Создание текста истории:
         StringBuilder sb = new StringBuilder();
 
-        File dirGame = new File("D://GAME_JAVA");
-        makeDirectory(dirGame);
+        //Создание списка структуры каталогов.
+        String katalogs[] = {
+                "D://GAME_JAVA",
+                "D://GAME_JAVA//src",
+                "D://GAME_JAVA//res",
+                "D://GAME_JAVA//savegames",
+                "D://GAME_JAVA//temp",
+                "D://GAME_JAVA//src//main",
+                "D://GAME_JAVA//src//test",
+                "D://GAME_JAVA//res//drawables",
+                "D://GAME_JAVA//res//vectors",
+                "D://GAME_JAVA//res//icons"
+        };
+        //Создание каталогов по указанному списку:
+        for (String dir : katalogs) {
+            File dirNext = new File(dir);
+            toLog(makeDirectory(dirNext), sb);
+        }
 
-        //Создание каталогов:
-        File dirSrc = new File("D://GAME_JAVA//src");
-        toLog(makeDirectory(dirSrc), sb);
-
-        File dirRes = new File("D://GAME_JAVA//res");
-        toLog(makeDirectory(dirRes), sb);
-
-        File dirSaveGames = new File("D://GAME_JAVA//savegames");
-        toLog(makeDirectory(dirSaveGames), sb);
-
-        File dirTmp = new File("D://GAME_JAVA//temp");
-        toLog(makeDirectory(dirTmp), sb);
-
-        //Создание подкаталогов в src:
-        File dirMain = new File("D://GAME_JAVA//src//main");
-        toLog(makeDirectory(dirMain), sb);
-
-        File dirTest = new File("D://GAME_JAVA//src//test");
-        toLog(makeDirectory(dirTest), sb);
-
-        //Создание подкаталогов в res:
-        File dirResDraw = new File("D://GAME_JAVA//res//drawables");
-        toLog(makeDirectory(dirResDraw), sb);
-
-        File dirResVect = new File("D://GAME_JAVA//res//vectors");
-        toLog(makeDirectory(dirResVect), sb);
-
-        File dirResIcon = new File("D://GAME_JAVA//res//icons");
-        toLog(makeDirectory(dirResIcon), sb);
-
-        //Создание файлов! в main:
-        File fileMain = new File(dirMain, "Main.java");
-        toLog(makeFile(fileMain), sb);
-
-        File fileUtil = new File(dirMain, "Utils.java");
-        toLog(makeFile(fileUtil), sb);
-
-        //Создание файла в temp:
-        File fileTmp = new File(dirTmp, "temp.txt");
-        toLog(makeFile(fileTmp), sb);
+        //Создание списка файлов:
+        String files2Create[] = {
+                "D://GAME_JAVA//src//main//Main.java",
+                "D://GAME_JAVA//src//main//Utils.java",
+                "D://GAME_JAVA//temp//temp.txt"
+        };
+        //Создание файлов!
+        for (String files : files2Create) {
+            File fileNext = new File(files);
+            toLog(makeFile(fileNext), sb);
+        }
 
         //Вывод истории на экран:
         System.out.println(sb.toString());
